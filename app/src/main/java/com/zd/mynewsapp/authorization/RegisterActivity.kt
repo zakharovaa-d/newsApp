@@ -1,27 +1,31 @@
 package com.zd.mynewsapp.authorization
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.zd.mynewsapp.R
 import com.zd.mynewsapp.profile.UserProfileActivity
+import com.zd.mynewsapp.utils.AuthorizationValidator
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
-
-    companion object {
-        val context = this
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         btn_register.setOnClickListener {
-            sendEmail()
-            showProfile()
-
+            val authorizationValidator = AuthorizationValidator ()
+            val emailValidation =
+                authorizationValidator.emailValidation(input_new_email.text.toString())
+            Log.v("zakharova", "RegisterActivity, btn_register, isValidEmail = $emailValidation")
+            if (!emailValidation) input_new_email.error = "Invalid email format"
+            else {
+                sendEmail()
+                showProfile()
+            }
         }
 
         link_login.setOnClickListener {
@@ -39,8 +43,9 @@ class RegisterActivity : AppCompatActivity() {
         return intentWithExtras
     }
 
+    //check if email is in use by another user
     private fun sendEmail() {
-        Log.v("zakharova", "RegisterActivity, sendEmail")
+        Log.v("zakharova", "RegisterActivity, sendEmail()")
     }
 
     private fun showProfile() {

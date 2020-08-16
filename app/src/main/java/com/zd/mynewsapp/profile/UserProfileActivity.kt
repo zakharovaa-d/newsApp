@@ -11,7 +11,6 @@ class UserProfileActivity : AppCompatActivity() {
 
     companion object {
         const val EMAIL = "email"
-        val context = this
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +23,6 @@ class UserProfileActivity : AppCompatActivity() {
         val email = intent.getStringExtra(EMAIL)
         Log.v("zakharova", "UserProfileActivity, email = $email")
         shown_email.hint = email
-        Resources.getSystem().getString(R.string.wrong_email_format)
     }
 
 }
