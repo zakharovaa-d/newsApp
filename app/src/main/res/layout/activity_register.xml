@@ -9,7 +9,7 @@
 
     <!-- Email Label -->
     <EditText
-        android:id="@+id/input_new_email"
+        android:id="@+id/email_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -17,7 +17,7 @@
 
     <!-- Password Label -->
     <EditText
-        android:id="@+id/input_new_password"
+        android:id="@+id/password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -25,7 +25,7 @@
 
     <!-- Confirm Password Label -->
     <EditText
-        android:id="@+id/confirm_new_password"
+        android:id="@+id/confirm_password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"

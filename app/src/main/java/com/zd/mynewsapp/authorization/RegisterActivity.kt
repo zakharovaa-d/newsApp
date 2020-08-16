@@ -1,7 +1,6 @@
 package com.zd.mynewsapp.authorization
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -17,15 +16,9 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         btn_register.setOnClickListener {
-            val authorizationValidator = AuthorizationValidator ()
-            val emailValidation =
-                authorizationValidator.emailValidation(input_new_email.text.toString())
-            Log.v("zakharova", "RegisterActivity, btn_register, isValidEmail = $emailValidation")
-            if (!emailValidation) input_new_email.error = "Invalid email format"
-            else {
-                sendEmail()
-                showProfile()
-            }
+            if (validateCredentials()) {
+            sendEmail()
+            showProfile()}
         }
 
         link_login.setOnClickListener {
@@ -33,8 +26,32 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun validateCredentials(): Boolean {
+        val email = email_input.text.toString()
+        val password = password_input.text.toString()
+        val confirmPassword = confirm_password_input.text.toString()
+
+        val authorizationValidator = AuthorizationValidator()
+
+        val emailValidation = authorizationValidator.emailValidation(email)
+        val passwordValidation = authorizationValidator.passwordValidation(password)
+        val passwordConfirmation =
+            authorizationValidator.passwordConfirmation(password, confirmPassword)
+
+        if (!emailValidation)
+            email_input.error = getString(R.string.invalid_email)
+        if (!passwordValidation)
+            password_input.error = getString(R.string.weak_password)
+        if (!passwordConfirmation)
+            confirm_password_input.error = getString(R.string.password_mismatch)
+
+        return emailValidation
+            && passwordValidation
+            &&passwordConfirmation
+    }
+
     private fun createIntentForUserProfileActivity(): Intent {
-        val email = input_new_email.text.toString()
+        val email = email_input.text.toString()
         val intentWithExtras = Intent(this, UserProfileActivity::class.java)
 
         intentWithExtras.putExtra(UserProfileActivity.EMAIL, email)
