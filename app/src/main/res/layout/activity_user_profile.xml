@@ -14,13 +14,13 @@
             android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/first_name"></EditText>
+            android:hint="@string/first_name" />
 
         <EditText
             android:id="@+id/second_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/second_name"></EditText>
+            android:hint="@string/second_name" />
 
         <EditText
             android:id="@+id/shown_email"
@@ -30,6 +30,20 @@
             android:focusable="false"
             android:inputType="none"
             tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/date_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_of_birth"
+            android:inputType="date" />
 
 
     </LinearLayout>
