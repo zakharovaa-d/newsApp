@@ -18,7 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         btn_register.setOnClickListener {
-            if (validateCredentials()) {
+            if (isCredentialsValid()) {
                 sendEmail()
                 showProfile()
             }
@@ -29,26 +29,25 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateCredentials(): Boolean {
+    private fun isCredentialsValid(): Boolean {
         val email = email_input.text.toString()
         val password = password_input.text.toString()
         val confirmPassword = confirm_password_input.text.toString()
 
-        val emailValidation = isEmailValid(email)
-        val passwordValidation = isPasswordValid(password)
-        val passwordConfirmation =
-            isPasswordConfirmed(password, confirmPassword)
-
-        if (!emailValidation)
+        var isCredentialsValid = true
+        if (!isEmailValid(email)) {
             email_input.error = getString(R.string.invalid_email)
-        if (!passwordValidation)
+            isCredentialsValid = false
+        }
+        if (!isPasswordValid(password)) {
             password_input.error = getString(R.string.weak_password)
-        if (!passwordConfirmation)
+            isCredentialsValid = false
+        }
+        if (!isPasswordConfirmed(password, confirmPassword)) {
             confirm_password_input.error = getString(R.string.password_mismatch)
-
-        return emailValidation
-                && passwordValidation
-                && passwordConfirmation
+            isCredentialsValid = false
+        }
+        return isCredentialsValid
     }
 
     private fun createIntentForUserProfileActivity(): Intent {
@@ -61,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
         return intentWithExtras
     }
 
-    //check if email is in use by another user
+    //TODO: check if email is in use by another user
     private fun sendEmail() {
         Log.v("zakharova", "RegisterActivity, sendEmail()")
     }
