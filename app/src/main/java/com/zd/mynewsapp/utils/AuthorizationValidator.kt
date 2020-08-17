@@ -5,37 +5,25 @@ import android.util.Log
 import android.util.Patterns
 import java.util.regex.Pattern
 
-
-class AuthorizationValidator {
-    fun emailValidation(email: CharSequence?): Boolean {
-        Log.v("zakharova", "AuthorizationValidator, emailValidation()," +
-                "isValidEmail = ${isValidEmail(email)}")
-        return isValidEmail(email)
-    }
-
-    fun passwordValidation(password: CharSequence?): Boolean {
-        Log.v("zakharova", "AuthorizationValidator, passwordValidation()," +
-                "isStrongPassword = ${isStrongPassword(password)}")
-        return isStrongPassword(password)
-    }
-
-    fun passwordConfirmation(password: CharSequence?, confirmPassword: CharSequence?): Boolean {
-        Log.v("zakharova", "AuthorizationValidator, passwordConfirmation(), " +
-                "are password equals = ${password == confirmPassword}")
-        return if (confirmPassword == null || TextUtils.isEmpty(confirmPassword)) false
-        else password == confirmPassword
-    }
-
-    private fun isValidEmail(email: CharSequence?): Boolean {
-        return if (email == null || TextUtils.isEmpty(email)) false
-        else {
-            Log.v("zakharova", "AuthorizationValidator, isValidEmail(), email = $email")
-            Patterns.EMAIL_ADDRESS.matcher(email).matches()
+fun isEmailValid(email: CharSequence?): Boolean {
+    return if (email == null || TextUtils.isEmpty(email)) {
+        Log.v("zakharova", "AuthorizationValidator, isEmailValid(): " +
+                "Email is empty or null}")
+        false
+    } else {
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Log.v("zakharova", "AuthorizationValidator, isEmailValid() = true")
+            true
+        } else {
+            Log.v("zakharova", "AuthorizationValidator, isEmailValid() = false}")
+            false
         }
     }
+}
 
-    private fun isStrongPassword(password: CharSequence?): Boolean {
-        val PASSWORD_PATTERN = Pattern.compile("^" +
+fun isPasswordValid(password: CharSequence?): Boolean {
+    val PASSWORD_PATTERN = Pattern.compile(
+        "^" +
                 //"(?=.*[0-9])" +         //at least 1 digit
                 //"(?=.*[a-z])" +         //at least 1 lower case letter
                 //"(?=.*[A-Z])" +         //at least 1 upper case letter
@@ -43,11 +31,35 @@ class AuthorizationValidator {
                 //"(?=.*[@#$%^&+=])" +    //at least 1 special character
                 "(?=\\S+$)" +           //no white spaces
                 ".{4,}" +               //at least 4 characters
-                "$")
-        return if (password == null || TextUtils.isEmpty(password)) false
-        else {
-            Log.v("zakharova", "AuthorizationValidator, isValidPassword(), password = $password")
-            PASSWORD_PATTERN.matcher(password).matches()
+                "$"
+    )
+    return if (password == null || TextUtils.isEmpty(password)) {
+        Log.v("zakharova", "AuthorizationValidator, isPasswordValid(): " +
+                "Password is empty or null}")
+        false
+    } else {
+        if (PASSWORD_PATTERN.matcher(password).matches()) {
+            Log.v("zakharova", "AuthorizationValidator, isPasswordValid() = true")
+            true
+        } else {
+            Log.v("zakharova", "AuthorizationValidator, isPasswordValid() = false}")
+            false
+        }
+    }
+}
+
+fun isPasswordConfirmed(password: CharSequence?, confirmPassword: CharSequence?): Boolean {
+    return if (confirmPassword == null || TextUtils.isEmpty(confirmPassword)) {
+        Log.v("zakharova", "AuthorizationValidator, isPasswordConfirmed(): " +
+                "Password Confirmation is empty or null}")
+        false
+    } else {
+        if (confirmPassword == password) {
+            Log.v("zakharova", "AuthorizationValidator, isPasswordConfirmed() = true")
+            true
+        } else {
+            Log.v("zakharova", "AuthorizationValidator, isPasswordConfirmed() = false}")
+            false
         }
     }
 }

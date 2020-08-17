@@ -6,7 +6,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.zd.mynewsapp.R
 import com.zd.mynewsapp.profile.UserProfileActivity
-import com.zd.mynewsapp.utils.AuthorizationValidator
+import com.zd.mynewsapp.utils.isEmailValid
+import com.zd.mynewsapp.utils.isPasswordConfirmed
+import com.zd.mynewsapp.utils.isPasswordValid
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,8 +19,9 @@ class RegisterActivity : AppCompatActivity() {
 
         btn_register.setOnClickListener {
             if (validateCredentials()) {
-            sendEmail()
-            showProfile()}
+                sendEmail()
+                showProfile()
+            }
         }
 
         link_login.setOnClickListener {
@@ -31,12 +34,10 @@ class RegisterActivity : AppCompatActivity() {
         val password = password_input.text.toString()
         val confirmPassword = confirm_password_input.text.toString()
 
-        val authorizationValidator = AuthorizationValidator()
-
-        val emailValidation = authorizationValidator.emailValidation(email)
-        val passwordValidation = authorizationValidator.passwordValidation(password)
+        val emailValidation = isEmailValid(email)
+        val passwordValidation = isPasswordValid(password)
         val passwordConfirmation =
-            authorizationValidator.passwordConfirmation(password, confirmPassword)
+            isPasswordConfirmed(password, confirmPassword)
 
         if (!emailValidation)
             email_input.error = getString(R.string.invalid_email)
@@ -46,8 +47,8 @@ class RegisterActivity : AppCompatActivity() {
             confirm_password_input.error = getString(R.string.password_mismatch)
 
         return emailValidation
-            && passwordValidation
-            &&passwordConfirmation
+                && passwordValidation
+                && passwordConfirmation
     }
 
     private fun createIntentForUserProfileActivity(): Intent {
