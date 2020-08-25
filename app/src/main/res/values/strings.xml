@@ -11,14 +11,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="first_name">First name</string>
     <string name="second_name">Second name</string>
-    <string name="invalid_email">"Invalid email format"</string>
-    <string name="weak_password">"Password is too weak"</string>
-    <string name="password_mismatch">"Password mismatch"</string>
-    <string name="field_cannot_be_empty">"Field can not be empty"</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="weak_password">Password is too weak</string>
+    <string name="password_mismatch">Password mismatch</string>
+    <string name="field_cannot_be_empty">Field can not be empty</string>
+    <string name="field_is_required">Field is required!</string>
     <string name="phone_number">Phone number</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="anarchy_bitcoin_and_murder_in_acapulco">Anarchy, Bitcoin, and Murder in Acapulco</string>
     <string name="the_once_thriving_resort_city_of_in_mexico_has_become_a_somewhat_lawless_place">The once-thriving resort city of in Mexico has become a somewhat lawless place.</string>
     <string name="search">Search</string>
     <string name="info">Info</string>
+    <string name="registration_successful">Registration Successful</string>
+    <string name="registration_failed">Registration Failed</string>
+    <string name="login_successful">Login Successful</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="retry">Retry</string>
+    <string name="zero_articles_found">Zero articles found</string>
 </resources>

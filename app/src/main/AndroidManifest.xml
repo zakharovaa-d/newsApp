@@ -11,30 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".news_feed.ArticleActivity"></activity>
-        <activity android:name=".authorization.AuthorizationActivity" /> <!-- <activity android:name=".authorization.AuthorizationActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <activity android:name=".news_feed.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".authorization.AuthorizationActivity"/>
+        <activity android:name=".news_feed.MainActivity" />
         <activity android:name=".profile.UserProfileActivity" />
         <activity
             android:name=".authorization.SplashScreenActivity"
             android:noHistory="true"
-            android:theme="@style/SplashTheme" /> <!-- android:theme="@style/SplashTheme"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+            android:theme="@style/SplashTheme" >
+         <intent-filter>
+         <action android:name="android.intent.action.MAIN" />
+         <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+         </activity>
         <activity android:name=".authorization.RegisterActivity" />
         <activity android:name=".authorization.LoginActivity" />
     </application>

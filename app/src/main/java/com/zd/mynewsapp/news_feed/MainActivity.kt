@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun getKeyWordQuery(userKeywordInput: String) {
         swipe_refresh.isRefreshing = true
-        if (userKeywordInput != null && userKeywordInput.isNotEmpty()) {
+        if (userKeywordInput.isNotEmpty()) {
             topHeadlinesObservable = topHeadlinesEndpoint.getUserSearchInput(newsApiConfig, userKeywordInput)
             subscribeObservableOfArticle()
         } else {

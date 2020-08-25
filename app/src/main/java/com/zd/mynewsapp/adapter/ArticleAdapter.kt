@@ -42,12 +42,12 @@ class ArticleAdapter(
         article: Article
     ) {
         checkForUrlToImage(article, articleViewHolder)
-        articleViewHolder.title.text = article?.title
-        articleViewHolder.description.text = article?.description
+        articleViewHolder.title.text = article.title
+        articleViewHolder.description.text = article.description
     }
 
     private fun checkForUrlToImage(article: Article, articleViewHolder: ArticleViewHolder) {
-        if (article.urlToImage == null || article.urlToImage.isEmpty()) {
+        if (article.urlToImage.isEmpty()) {
             Picasso.get()
                 .load(placeHolderImage)
                 .centerCrop()
